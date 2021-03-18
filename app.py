@@ -73,7 +73,7 @@ def callback():
 
     return 'OK'
 
-
+df_temp.loc[len(df_temp)-1,"Close"]
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
@@ -91,11 +91,14 @@ def handle_message(event):
         
         return
     if msg == "2330":
-        #r = stock_close(msg)
+        #stock_id = stock_id + ".TW"
+        df = Fetcher("2330.TW", [2019, 4, 18], [2021, 3, 17]).getHistorical()
+        #reply = stock_id + df["Date"][-1].astype(str) + "的收盤價是" + df["Close"][-1].astype(str)
+        r = df.loc[len(df)-1,"Close"]
         
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="13131"))
+        TextSendMessage(text=r))
         
         return
     r = '我不想回答耶'
