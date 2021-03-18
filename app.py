@@ -12,6 +12,30 @@ git push heroku
 
 
 '''
+
+
+#====================================================================
+
+import copy 
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt
+import mpl_finance as mpf
+from matplotlib.gridspec import GridSpec
+
+import time
+import h5py
+from yahoo_historical import Fetcher
+
+def stock_close(stock_id):
+    stock_id = stock_id + ".TW"
+    df = Fetcher(stock_id, [2019, 4, 18], [2021, 3, 17]).getHistorical()
+    reply = stock_id + df["Date"][-1].astype(str) + "的收盤價是" + df["Close"][-1].astype(str)
+    return reply
+
+    
+#====================================================================
+
 # 載入需要的模組
 
 from flask import Flask, request, abort
@@ -58,7 +82,7 @@ def handle_message(event):
     if msg == "來個貼圖":
         sticker_message = StickerSendMessage(
         package_id='1',
-        sticker_id='1'
+        sticker_id='2'
         )
         
         line_bot_api.reply_message(
@@ -66,38 +90,26 @@ def handle_message(event):
         sticker_message)
         
         return
+    if msg == "2330":
+        r = stock_close(msg)
+        
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
+        
+        return
     r = '我不想回答耶'
     if msg in ["你好","hi","Hi","妳好"]:
         r = "我很好啊"
     elif msg == "你能幹嘛":
         r = "我現在很笨，什麼都不會"
+        
     if msg == "2330":
         r = stock_close(msg)
-               
+        
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
 
-#====================================================================
-
-import copy 
-import pandas as pd 
-import numpy as np 
-import matplotlib.pyplot as plt
-import mpl_finance as mpf
-from matplotlib.gridspec import GridSpec
-
-import time
-import h5py
-from yahoo_historical import Fetcher
-
-def stock_close(stock_id):
-    stock_id = stock_id + ".TW"
-    df = Fetcher(stock_id, [2019, 4, 18], [2021, 3, 17]).getHistorical()
-    reply = stock_id + df["Date"][-1].astype(str) + "的收盤價是" + df["Close"][-1].astype(str)
-    return reply
-
-    
-#====================================================================
 if __name__ == "__main__":
     app.run()
