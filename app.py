@@ -4,7 +4,14 @@ Created on Thu Mar 18 14:47:51 2021
 
 @author: depp
 """
+'''
+git add .
+git commit -m "update"
+git push
+git push heroku
 
+
+'''
 # 載入需要的模組
 
 from flask import Flask, request, abort
@@ -16,7 +23,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,StickerSendMessage
 )
 
 app = Flask(__name__)
@@ -47,6 +54,15 @@ def callback():
 def handle_message(event):
     
     msg = event.message.text
+    
+    sticker_message = StickerSendMessage(
+    package_id='1',
+    sticker_id='1'
+    )
+    
+    line_bot_api.reply_message(
+    event.reply_token,
+    sticker_message)
     r = '我不想回答耶'
     if msg in ["你好","hi","Hi","妳好"]:
         r = "我很好啊"
