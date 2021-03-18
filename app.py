@@ -91,7 +91,7 @@ def handle_message(event):
         
         return
     if msg == "2330":
-        r = stock_close(msg)
+        #r = stock_close(msg)
         
         line_bot_api.reply_message(
         event.reply_token,
@@ -104,8 +104,6 @@ def handle_message(event):
     elif msg == "你能幹嘛":
         r = "我現在很笨，什麼都不會"
         
-    if msg == "2330":
-        r = stock_close(msg)
         
     line_bot_api.reply_message(
         event.reply_token,
