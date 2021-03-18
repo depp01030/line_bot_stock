@@ -92,9 +92,8 @@ def handle_message(event):
         return
     if msg == "2330":
         #stock_id = stock_id + ".TW"
-        df = Fetcher("2330.TW", [2019, 4, 18], [2021, 3, 17]).getHistorical()
-        #reply = stock_id + df["Date"][-1].astype(str) + "的收盤價是" + df["Close"][-1].astype(str)
-        r = df.loc[len(df)-1,"Close"]
+        df = Fetcher("2330.TW", [2019, 4, 18], [2021, 3, 18]).getHistorical()
+        r = msg + df.loc[len(df)-1,"Date"] + "的收盤價是" +df.loc[len(df)-1,"Close"]
         
         line_bot_api.reply_message(
         event.reply_token,
