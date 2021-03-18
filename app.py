@@ -95,7 +95,7 @@ def handle_message(event):
         
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=r))
+        TextSendMessage(text="13131"))
         
         return
     r = '我不想回答耶'
