@@ -570,7 +570,9 @@ def handle_message(event):
     
     if msg == "perf測試":
         df = scrape_busi_perf_f("2330")
-        r = df.iloc[1,1]
+        r = df.iloc[1,0]
+        if len(r) != 1:
+            r ="失敗"
         line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
