@@ -62,8 +62,8 @@ def macd(df):
     macd_df['MACD_hist'] = macd_df['DIF'] - macd_df['MACD']
     return macd_df
 
-init_k_lst = np.repeat(50,len(stock_list)) #先建立所有股票的init_kd
-init_d_lst =np.repeat(50,len(stock_list))
+# init_k_lst = np.repeat(50,len(stock_list)) #先建立所有股票的init_kd
+# init_d_lst =np.repeat(50,len(stock_list))
 i=0
 begin_date = [2019, 4, 18]
 end_date = [2021, 3, 20]
