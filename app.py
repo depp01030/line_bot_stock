@@ -112,7 +112,7 @@ def scrape_stock_price_f(stock_id,begin = begin_date ,end = end_date):
 '=================================經營績效==============================================='
 def scrape_busi_perf_f(stock_id):
     browser = webdriver.Chrome()
-    perf_indexes = ["獲利指標", "季增統計", "年增統計", "PER/PBR"]
+    perf_indexes =["獲利指標" ]# ["獲利指標", "季增統計", "年增統計", "PER/PBR"]
     busi_performance = pd.DataFrame()
     try:
         for h in range(len(perf_indexes)):
