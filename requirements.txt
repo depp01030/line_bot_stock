@@ -10,5 +10,5 @@ yahoo_historical==0.3.2
 pyimgur ==0.6.0
 requests==2.25.1
 beautifulsoup4==4.9.3
-selenium=3.141.0
+selenium==3.141.0
 webdriver-manager==3.3.0
