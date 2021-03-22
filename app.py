@@ -27,6 +27,15 @@ import time
 import h5py
 from yahoo_historical import Fetcher
 
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from webdriver_manager.chrome import ChromeDriverManager
+
+
+
+
 def stock_close(stock_id):
     stock_id = stock_id + ".TW"
     df = Fetcher(stock_id, [2019, 4, 18], [2021, 3, 19]).getHistorical()
@@ -497,7 +506,7 @@ def callback():
 def handle_message(event):
     
     msg = event.message.text
-    r = '我不想理你耶'
+    r = '我不想理你耶哈哈'
     if msg == "來個貼圖":
         sticker_message = StickerSendMessage(
         package_id='1',
