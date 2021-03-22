@@ -552,6 +552,21 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=r))
         
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=df.iloc[len(df)-1,2]))
+        
+        scrape_busi_perf_f
+        return
+    
+    if msg == "perf測試":
+        df = scrape_busi_perf_f("2330")
+        r = df.iloc[1,1]
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
+        
+
         return
     line_bot_api.reply_message(
         event.reply_token,
