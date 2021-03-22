@@ -534,11 +534,11 @@ def handle_message(event):
     #照片傳送==================================================================
     
     if msg == "照片測試":
-        #stock_id = "2330"
-        #image_url = stock_plot(CLIENT_ID,stock_id)
+        stock_id = "2330"
+        image_url = stock_plot(CLIENT_ID,stock_id)
         message = ImageSendMessage(
-            original_content_url="https://i.imgur.com/Q1Rz4Yq.jpg",
-            preview_image_url= "https://i.imgur.com/Q1Rz4Yq.jpg"
+            original_content_url=image_url,
+            preview_image_url= image_url
         )
         line_bot_api.reply_message(event.reply_token,message)
     
