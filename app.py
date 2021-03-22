@@ -394,7 +394,7 @@ class Stock_f:
             ax_note.text(0.01,0.8,
                         note, ha='left',va = "top",fontsize = 20)
         if save_flag == 1:
-            fig.savefig("stock_chart.jpeg', dpi=200, bbox_inches='tight')
+            fig.savefig("stock_chart.jpg", dpi=200, bbox_inches='tight')
 
     '-------------價量圖顏色------------'
     def macd_color_f(self):
@@ -462,7 +462,7 @@ def stock_plot(CLIENT_ID,stock_id):
     stock_df.strategy_MACD_line()
     stock_df.plot_result(1,0)
     
-    PATH = "stock_chart.jpeg"
+    PATH = "stock_chart.jpg"
     im = pyimgur.Imgur(CLIENT_ID)
     uploaded_image = im.upload_image(PATH)
     return uploaded_image.link
