@@ -541,11 +541,14 @@ def handle_message(event):
             preview_image_url= image_url
         )
         line_bot_api.reply_message(event.reply_token,message)
+    #爬蟲測試傳送==================================================================
     
-    
-    line_bot_api.reply_message(
+    if msg == "爬蟲測試":
+        df = scrape_stock_price_f("2330")
+        r = df.iloc[len(df)-1,1]
+        line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=r))
+        TextSendMessage(text=[r,"123"]))
     
 
 if __name__ == "__main__":
