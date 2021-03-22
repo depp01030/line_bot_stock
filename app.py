@@ -34,7 +34,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
-
+import os
 
 
 
@@ -111,6 +111,15 @@ def scrape_stock_price_f(stock_id,begin = begin_date ,end = end_date):
 #%% 
 '=================================經營績效==============================================='
 def scrape_busi_perf_f(stock_id):
+    
+    
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless") #無頭模式
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
     browser = webdriver.Chrome()
     perf_indexes =["獲利指標" ]# ["獲利指標", "季增統計", "年增統計", "PER/PBR"]
     busi_performance = pd.DataFrame()
