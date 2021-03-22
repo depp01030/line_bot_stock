@@ -26,14 +26,13 @@ from matplotlib.gridspec import GridSpec
 import time
 import h5py
 from yahoo_historical import Fetcher
-
+stock_id = "2330.TW"
 def stock_close(stock_id):
     stock_id = stock_id + ".TW"
-    df = Fetcher(stock_id, [2019, 4, 18], [2021, 3, 18]).getHistorical()
+    df = Fetcher(stock_id, [2019, 4, 18], [2021, 3, 19]).getHistorical()
     r = "2330   " + df.loc[len(df)-1,"Date"] +\
         "  的收盤價是  " +df.loc[len(df)-1,"Close"].astype(str)
     return r
-
 
 #====================================================================
 
@@ -79,7 +78,7 @@ def callback():
 def handle_message(event):
     
     msg = event.message.text
-    
+    r = '我不想回答耶'
     if msg == "來個貼圖":
         sticker_message = StickerSendMessage(
         package_id='1',
@@ -99,13 +98,20 @@ def handle_message(event):
         TextSendMessage(text=r))
         
         return
-    r = '我不想回答耶'
     if msg in ["你好","hi","Hi","妳好"]:
         r = "我很好啊"
     elif msg == "你能幹嘛":
         r = "我現在很笨，什麼都不會"
         
-        
+    #照片傳送
+    if msg == "照片測試":
+        message = ImageSendMessage(
+            original_content_url='https://example.com/original.jpg',
+            preview_image_url='https://example.com/preview.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+    
+    
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
