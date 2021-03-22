@@ -5,6 +5,8 @@ Created on Thu Mar 18 14:47:51 2021
 @author: depp
 """
 '''
+cd C:\python_practice\Stock
+heroku login
 git add .
 git commit -m "update"
 git push
@@ -548,8 +550,12 @@ def handle_message(event):
         r = df.iloc[len(df)-1,1]
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=[r,"123"]))
-    
+        TextSendMessage(text=r))
+        
+        return
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 if __name__ == "__main__":
     app.run()
